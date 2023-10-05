@@ -118,7 +118,7 @@
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">Kevin Anderson</span> <!--DB working-->
+            <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -166,14 +166,11 @@
                 <span>Sign Out</span>
               </a>
             </li>
-
-          </ul><!-- End Profile Dropdown Items -->
-        </li><!-- End Profile Nav -->
-
+          </ul>
+        </li>
       </ul>
-    </nav><!-- End Icons Navigation -->
-
-  </header><!-- End Header -->
+    </nav>
+  </header>
 
   <!-- ======= Sidebar ======= -->
   <aside id="sidebar" class="sidebar">
@@ -267,13 +264,22 @@
   </aside><!-- End Sidebar-->
 
   <main id="main" class="main">
+    <script>
+
+      document.addEventListener("DOMContentLoaded", function() {
+          var questionTitle = document.getElementById("activeName");
+          questionTitle.textContent = "Subject: " + sessionStorage.getItem("className");
+      });
+      
+    </script>
 
     <div class="pagetitle">
-      <h1>Dashboard</h1>
+    <h1>Manage Class</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item active">Dashboard</li>
+          <li class="breadcrumb-item">Class</li>
+          <li class="breadcrumb-item active">View Question</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -282,31 +288,113 @@
       <div class="row">
 
         <!-- Left side columns -->
-        <div class="col-12">
+        <div class="col-lg-12">
           <div class="row">
-            <div class="col-lg-12">
-              <div class="card recent-sales overflow-auto">
+            <div class="col-12">
+              <div class="card">
                 <div class="card-body">
-                  <h3 class="card-title">Welcome Tutor</h3>
-                  <h5>Kevin</h4> <!--Back-end load person tutor's name who signed in successfully from DB-->
-                  <hr>
-                  <h5 class="card-title">Important Announcement: Reduction in Tutoring Staff</h5>
-                  <div style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
-                    <p>
-                      Dear respected tutors,<br><br>
-                      We hope this message finds you well. We want to inform you about a recent decision made by our esteemed board members. In light of the current situation,<br>
-                      it has been decided to reduce the tutoring staff by <strong>95%</strong>. We understand that this might come as a surprise and want to express our gratitude for the hard work and dedication you have shown.<br>
-                      For those tutors who are considering voluntary retirement, we are currently accepting applications. If you wish to apply, please visit our office at G102 and submit your application. Your cooperation in this process is highly appreciated.<br>
-                      Additionally, we would like to express our gratitude to those tutors who choose to return one month's salary. A <strong>10$ woolworth card</strong> of appreciation awaits you as a gesture of our thanks. Your support in this matter is invaluable.<br><br>
-                      Thank you for your understanding and cooperation during this challenging time.<br><br>
-                      Warm regards,<br>
-                      Director Boss<br>
-                    </p>
-                  </div>
+                  <h2 class="card-title" id="activeName"></h2>
+                </div>
+              </div>
+            </div>
+            <hr>
+          </div>
+          
+          <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-body">
+                  <h2 class="card-title">Question Board</h2>
+                  <form>
+                    <div class="row mb-3">
+                      <label for="inputEmail3" class="col-sm-2 col-form-label">Question number</label>
+                      <div class="col-sm-3">
+                        <input type="text" class="form-control" readonly="readonly">
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <label for="inputEmail3" class="col-sm-2 col-form-label">Name</label>
+                      <div class="col-sm-3">
+                        <input type="text" class="form-control" readonly="readonly">
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <label for="inputEmail3" class="col-sm-2 col-form-label">Student Number</label>
+                      <div class="col-sm-3">
+                        <input type="text" class="form-control" readonly="readonly">
+                      </div>
+                    </div>
+                    <fieldset class="row mb-3">
+                      <div class="row mb-3">
+                        <label for="inputEmail3" class="col-sm-2 col-form-label">description</label>
+                        <div class="col-sm-10">
+                        <textarea class="form-control" rows="10" readonly="readonly"></textarea>
+                        </div>
+                      </div>
+                    </fieldset>
+                  </form>
                 </div>
               </div>
             </div>
           </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-body">
+                <h3 class="card-title">Comments</h3>
+                  <div class="row mb-3" id="comments-container">
+
+                  <fieldset class="row mb-3">
+                    <p>Kevin</p>
+                    <p>Dummy data</p>
+                  </fieldset>
+                  <fieldset class="row mb-3">
+                    <p>Julia</p>
+                    <p>Dummy data</p>
+                  </fieldset>
+                  <fieldset class="row mb-3">
+                    <p>Dustin</p>
+                    <p>Dummy data</p>
+                  </fieldset>
+                  
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr>
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-body">
+                <h3 class="card-title">Leave a Comment</h3>
+                
+                  <form action="post" method="" id>
+                  <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Name</label> 
+                    <div class="col-sm-3">
+                      <input type="text" class="form-control" readonly="readonly" value="Kevin Macdonald"> <!--This name data need to be worked-->
+                    </div>
+                  </div>
+                  <fieldset class="row mb-3">
+                    <div class="row mb-3">
+                      <label for="inputEmail3" class="col-sm-2 col-form-label">Comment</label>
+                      <div class="col-sm-10">
+                      <textarea class="form-control" rows="3"></textarea>
+                      </div>
+                    </div>
+                  </fieldset>
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="reset" class="btn btn-secondary">Reset</button>
+                  </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
@@ -331,8 +419,6 @@
   <script src="assets/vendor/tinymce/tinymce.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
 
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
 
 </body>
 
