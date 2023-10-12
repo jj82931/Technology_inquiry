@@ -18,3 +18,7 @@ Version 0.5 / 05.10.23 / Chaeyeon
 - added view question list and enrolled student list (Need DB and back-end stuff)
 - added comment form (Need DB and back-end stuff)
 
+Version 0.6 / 05.10.23 / Chaeyeon
+- modified the tutor section
+- added feedback page
+- Removed unnecessary files
