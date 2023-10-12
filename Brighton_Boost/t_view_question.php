@@ -37,9 +37,9 @@
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="t_index.php" class="logo d-flex align-items-center">
         <img src="assets/img/logo.png" alt="">
-        <span class="d-none d-lg-block">Birghton Boost School</span>
+        <span class="d-none d-lg-block">Brighton Boost School</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -178,7 +178,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="index.html">
+        <a class="nav-link collapsed" href="t_index.php">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
@@ -186,7 +186,7 @@
 
 
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#class-nav" data-bs-toggle="collapse" href="#">
+        <a class="nav-link" data-bs-target="#class-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-journal-text"></i><span>Class</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="class-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
@@ -240,18 +240,11 @@
       </li><!-- End F.A.Q Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-contact.html">
-          <i class="bi bi-envelope"></i>
-          <span>Contact</span>
+        <a class="nav-link collapsed" href="t_feedback.php">
+        <i class="bi bi-grid"></i>
+          <span>Feedback</span>
         </a>
-      </li><!-- End Contact Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-register.html">
-          <i class="bi bi-card-list"></i>
-          <span>Register</span>
-        </a>
-      </li><!-- End Register Page Nav -->
+      </li>
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="pages-login.html">
@@ -259,6 +252,7 @@
           <span>Login</span>
         </a>
       </li><!-- End Login Page Nav -->
+
     </ul>
 
   </aside><!-- End Sidebar-->

@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Dashboard - Brighton Boost shcool</title>
+  <title>Pages / Contact - NiceAdmin Bootstrap Template</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -29,6 +29,13 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
+  <!-- =======================================================
+  * Template Name: NiceAdmin
+  * Updated: Aug 30 2023 with Bootstrap v5.3.1
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
 </head>
 
 <body>
@@ -118,7 +125,7 @@
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+            <span class="d-none d-md-block dropdown-toggle ps-2">Kevin Anderson</span> <!--DB working-->
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -174,36 +181,35 @@
     </nav><!-- End Icons Navigation -->
 
   </header><!-- End Header -->
-
   <!-- ======= Sidebar ======= -->
   <aside id="sidebar" class="sidebar">
 
     <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="t_index.php">
+          <i class="bi bi-grid"></i>
+          <span>Dashboard</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#class-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-journal-text"></i><span>Manage</span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="bi bi-journal-text"></i><span>Class</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="class-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="a_viewStudent.html">
-              <i class="bi bi-circle"></i><span>View Students</span>
+            <a href="t_manage_class.html">
+              <i class="bi bi-circle"></i><span>Manage Class</span>
             </a>
           </li>
           <li>
-            <a href="t_manage_class.html">
-              <i class="bi bi-circle"></i><span>Create Student</span>
+            <a href="forms-elements.html">
+              <i class="bi bi-circle"></i><span>N/A</span>
             </a>
           </li>
-          <li>
-            <a href="t_manage_class.html">
-              <i class="bi bi-circle"></i><span>Update Student</span>
-            </a>
-          </li>
-          <li>
-            <a href="t_manage_class.html">
-              <i class="bi bi-circle"></i><span>Delete Student</span>
-            </a>
-          </li>
+
         </ul>
       </li><!-- End Forms Nav -->
 
@@ -243,18 +249,11 @@
       </li><!-- End F.A.Q Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-contact.html">
-          <i class="bi bi-envelope"></i>
-          <span>Contact</span>
+        <a class="nav-link" href="t_feedback.php">
+        <i class="bi bi-grid"></i>
+          <span>Feedback</span>
         </a>
-      </li><!-- End Contact Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-register.html">
-          <i class="bi bi-card-list"></i>
-          <span>Register</span>
-        </a>
-      </li><!-- End Register Page Nav -->
+      </li>
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="pages-login.html">
@@ -262,6 +261,7 @@
           <span>Login</span>
         </a>
       </li><!-- End Login Page Nav -->
+      
     </ul>
 
   </aside><!-- End Sidebar-->
@@ -269,77 +269,91 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Student List</h1>
+      <h1>Feedback</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item active">View Students</li>
+          <li class="breadcrumb-item">Pages</li>
+          <li class="breadcrumb-item active">Feedback</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
 
-    <section class="section">
-      <div class="row">
-        <div class="col-lg-12">
-            <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">Default Table</h5>
-    
-                  <!-- Default Table -->
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Sudent number</th>
-                        <th scope="col">student email</th>
-                        <th scope="col">student name</th>
-                        <th scope="col">Date of birth</th>
-                        <th scope="col">Date of birth</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>1001</td>
-                        <td>Jacob Yorksher</td>
-                        <td>18</td>
-                        <td>25-05-2005</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>1002</td>
-                        <td>Hina Masaka</td>
-                        <td>16</td>
-                        <td>11-10-2007</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td>1003</td>
-                        <td>Duke Coconut</td>
-                        <td>18</td>
-                        <td>20-03-2005</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">4</th>
-                        <td>1004</td>
-                        <td>Golden Retriever</td>
-                        <td>18</td>
-                        <td>29-10-2005</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">5</th>
-                        <td>1005</td>
-                        <td>Minsoo Kim</td>
-                        <td>16</td>
-                        <td>24-04-2005</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <!-- End Default Table Example -->
-                </div>
+    <section class="section contact">
+
+      <div class="row gy-4">
+
+        <div class="col-xl-6">
+
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="info-box card">
+                <i class="bi bi-geo-alt"></i>
+                <h3>Address</h3>
+                <p>John St,<br>Hawthorn VIC 3122</p>
+              </div>
             </div>
+            <div class="col-lg-6">
+              <div class="info-box card">
+                <i class="bi bi-telephone"></i>
+                <h3>Call Us</h3>
+                <p>03 1234 1234<br>03 1234 1111</p>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="info-box card">
+                <i class="bi bi-envelope"></i>
+                <h3>Email Us</h3>
+                <p>info@example.com<br>admin@example.com</p>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="info-box card">
+                <i class="bi bi-clock"></i>
+                <h3>Open Hours</h3>
+                <p>Monday - Friday<br>9:00AM - 06:00PM</p>
+              </div>
+            </div>
+          </div>
         </div>
+
+        <div class="col-xl-6">
+          <div class="card p-4">
+            <form action="forms/contact.php" method="post" class="php-email-form">
+              <div class="row gy-4">
+
+                <div class="col-md-6">
+                  <input type="text" name="name" class="form-control" placeholder="Example) Kevin readonly" readonly="readonly" required>
+                </div>
+
+                <div class="col-md-6 ">
+                  <input type="text" class="form-control" name="email" placeholder="Example) 12341234 readonly" readonly="readonly">
+                </div>
+
+                <div class="col-md-12">
+                  <input type="text" class="form-control" name="subject" placeholder="Subject" required>
+                </div>
+
+                <div class="col-md-12">
+                  <textarea class="form-control" name="message" rows="6" placeholder="Message" required></textarea>
+                </div>
+
+                <div class="col-md-12 text-center">
+                  <div class="loading">Loading</div>
+                  <div class="error-message"></div>
+                  <div class="sent-message">Your message has been sent. Thank you!</div>
+
+                  <button type="submit">Send Message</button>
+                </div>
+
+              </div>
+            </form>
+          </div>
+
+        </div>
+
       </div>
+
     </section>
 
   </main><!-- End #main -->
