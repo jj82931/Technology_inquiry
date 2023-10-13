@@ -39,7 +39,7 @@
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
         <img src="assets/img/logo.png" alt="">
-        <span class="d-none d-lg-block">Birghton Boost School</span>
+        <span class="d-none d-lg-block">Brighton Boost School</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -118,7 +118,7 @@
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+            <span class="d-none d-md-block dropdown-toggle ps-2">Kevin Anderson</span> <!--DB working-->
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -179,31 +179,31 @@
   <aside id="sidebar" class="sidebar">
 
     <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link " href="t_index.php">
+          <i class="bi bi-grid"></i>
+          <span>Dashboard</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#class-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-journal-text"></i><span>Manage</span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="bi bi-journal-text"></i><span>Class</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="class-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="a_viewStudent.html">
-              <i class="bi bi-circle"></i><span>View Students</span>
+            <a href="t_manage_class.html">
+              <i class="bi bi-circle"></i><span>Manage Class</span>
             </a>
           </li>
           <li>
-            <a href="t_manage_class.html">
-              <i class="bi bi-circle"></i><span>Create Student</span>
+            <a href="forms-elements.html">
+              <i class="bi bi-circle"></i><span>N/A</span>
             </a>
           </li>
-          <li>
-            <a href="t_manage_class.html">
-              <i class="bi bi-circle"></i><span>Update Student</span>
-            </a>
-          </li>
-          <li>
-            <a href="t_manage_class.html">
-              <i class="bi bi-circle"></i><span>Delete Student</span>
-            </a>
-          </li>
+
         </ul>
       </li><!-- End Forms Nav -->
 
@@ -243,18 +243,11 @@
       </li><!-- End F.A.Q Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-contact.html">
-          <i class="bi bi-envelope"></i>
-          <span>Contact</span>
+        <a class="nav-link collapsed" href="t_feedback.php">
+        <i class="bi bi-grid"></i>
+          <span>Feedback</span>
         </a>
-      </li><!-- End Contact Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-register.html">
-          <i class="bi bi-card-list"></i>
-          <span>Register</span>
-        </a>
-      </li><!-- End Register Page Nav -->
+      </li>
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="pages-login.html">
@@ -262,6 +255,7 @@
           <span>Login</span>
         </a>
       </li><!-- End Login Page Nav -->
+
     </ul>
 
   </aside><!-- End Sidebar-->
@@ -269,80 +263,73 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Student List</h1>
+      <h1>Dashboard</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item active">View Students</li>
+          <li class="breadcrumb-item active">Dashboard</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
 
-    <section class="section">
+    <section class="section dashboard">
       <div class="row">
-        <div class="col-lg-12">
-            <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">Default Table</h5>
-    
-                  <!-- Default Table -->
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Sudent number</th>
-                        <th scope="col">student email</th>
-                        <th scope="col">student name</th>
-                        <th scope="col">Date of birth</th>
-                        <th scope="col">Date of birth</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>1001</td>
-                        <td>Jacob Yorksher</td>
-                        <td>18</td>
-                        <td>25-05-2005</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>1002</td>
-                        <td>Hina Masaka</td>
-                        <td>16</td>
-                        <td>11-10-2007</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td>1003</td>
-                        <td>Duke Coconut</td>
-                        <td>18</td>
-                        <td>20-03-2005</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">4</th>
-                        <td>1004</td>
-                        <td>Golden Retriever</td>
-                        <td>18</td>
-                        <td>29-10-2005</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">5</th>
-                        <td>1005</td>
-                        <td>Minsoo Kim</td>
-                        <td>16</td>
-                        <td>24-04-2005</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <!-- End Default Table Example -->
+
+        <!-- Left side columns -->
+        <div class="col-12">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="row">
+                      <h5 class="card-title">Punch In - Out</h5>
+                      <div class="col-lg-4">
+                        <div class="card">
+                          <div class="card-body">
+                            <h5 class="card-title"><a href="">Punch In</a></h5>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-4">
+                        <div class="card">
+                          <div class="card-body">
+                            <h5 class="card-title"><a href="">Punch Out</a></h5>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+              </div>
+              <div class="card">
+                <div class="card-body">
+                  
+                  <h3 class="card-title">Welcome Tutor</h3>
+                  <h5>Kevin</h4> <!--Back-end load person tutor's name who signed in successfully from DB-->
+                  
+                  <hr>
+                  <h5 class="card-title">Important Announcement: Reduction in Tutoring Staff</h5>
+                  <div style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
+                    <p>
+                      Dear respected tutors,<br><br>
+                      We hope this message finds you well. We want to inform you about a recent decision made by our esteemed board members. In light of the current situation,<br>
+                      it has been decided to reduce the tutoring staff by <strong>95%</strong>. We understand that this might come as a surprise and want to express our gratitude for the hard work and dedication you have shown.<br>
+                      For those tutors who are considering voluntary retirement, we are currently accepting applications. If you wish to apply, please visit our office at G102 and submit your application. Your cooperation in this process is highly appreciated.<br>
+                      Additionally, we would like to express our gratitude to those tutors who choose to return one month's salary. A <strong>10$ woolworth card</strong> of appreciation awaits you as a gesture of our thanks. Your support in this matter is invaluable.<br><br>
+                      Thank you for your understanding and cooperation during this challenging time.<br><br>
+                      Warm regards,<br>
+                      Director Boss<br>
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
       </div>
     </section>
-
-  </main><!-- End #main -->
+  </main>
 
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
