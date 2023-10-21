@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <!--display "Welcome <tutor name>. <Session>" need to be worked through DB-->
-    <title>Tutor | Student Dashboard</title> 
+    <title>Admin | Tutor | Student Dashboard</title> 
     
     <meta content="" name="description">
     <meta content="" name="keywords">
@@ -178,6 +178,18 @@
 
     <ul class="sidebar-nav" id="sidebar-nav">
 
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#class-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span>Class</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="class-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="s_index.html">
+              <i class="bi bi-circle"></i><span>Manage Class</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Forms Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
@@ -208,18 +220,19 @@
       </li><!-- End Profile Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-faq.html">
-          <i class="bi bi-question-circle"></i>
-          <span>F.A.Q</span>
-        </a>
-      </li><!-- End F.A.Q Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-feedback.html">
+        <a class="nav-link collapsed" href="pages-contact.html">
           <i class="bi bi-envelope"></i>
-          <span>Feedback</span>
+          <span>Contact</span>
         </a>
       </li><!-- End Contact Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="pages-login.html">
+          <i class="bi bi-box-arrow-in-right"></i>
+          <span>Login</span>
+        </a>
+      </li><!-- End Login Page Nav -->
+    </ul>
 
   </aside><!-- End Sidebar-->
 
@@ -234,77 +247,139 @@
       </nav>
     </div><!-- End Page Title -->
 
-    <!-- Punch In / Out + Subscription Section -->
+    
     <section class="section">
       <div class="row">
-        <div class="col-lg-11">
-          <div class="card">
-            <div class="card-body">
-              <br>
-              <div class="row">
-                <div class="col-lg-4">
-                  <div class="card">
-                    <div class="card-body">
-                      <div class="card-body button-card-body">
-                        <button class="card-button">Punch In</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-4">
-                  <div class="card">
-                    <div class="card-body">
-                      <div class="card-body button-card-body">
-                        <button class="card-button">Punch Out</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-4">
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">Subscription Period:<span>&nbsp; X Days Remaining</span></h5>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+          <div class="col-lg-19">
+              <div class="card">
+                  <div class="card-body">
+                      <h3 class="card-title">Admin Dashboard</h3>
+                      <hr>
+                      <div class="row">
+                          <div class="col-lg-20">
+                              <div class="card">
+                                  <div class="card-body">
+                                      <h5 class="card-title">Stats<span>&nbsp;</span></h5>
 
-        <div class="col-lg-11">
-          <div class="card">
-            <div class="card-body">
-              <h3 class="card-title">Sessions</h3>
-              <hr>
+                                      <!-- Left side columns -->
+                                      <div class="col-lg-12">
+                                          <div class="row">
+                                              <div class="col-lg-6">
+                                                  <div class="card">
+                                                      <div class="card-body">
+                                                          <h5 class="card-title">Users Stats</h5>
+                                                          <!-- Bar Chart -->
+                                                          <canvas id="barChart" style="max-height: 400px;"></canvas>
+                                                          <script>
+                                                          document.addEventListener("DOMContentLoaded", () => {
+                                                              new Chart(document.querySelector('#barChart'), {
+                                                                  type: 'bar',
+                                                                  data: {
+                                                                      labels: ['Students', 'Tutor'],
+                                                                      datasets: [{
+                                                                          label: 'Percentage',
+                                                                          data: [72, 100],
+                                                                          backgroundColor: [
+                                                                              'rgba(255, 99, 132, 0.2)',
+                                                                              'rgba(255, 159, 64, 0.2)'
+                                                                          ],
+                                                                          borderColor: [
+                                                                              'rgb(255, 99, 132)',
+                                                                              'rgb(255, 159, 64)'
+                                                                          ],
+                                                                          borderWidth: 1
+                                                                      }]
+                                                                  },
+                                                                  options: {
+                                                                      scales: {
+                                                                          y: {
+                                                                              beginAtZero: true
+                                                                          }
+                                                                      }
+                                                                  }
+                                                              });
+                                                          });
+                                                          </script>
+                                                          <!-- End Bar Chart -->
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                              <div class="col-lg-6">
+                                                  <div class="card">
+                                                      <div class="card-body">
+                                                          <h5 class="card-title">Rate of Attendance a Half Year - Students</h5>
+                                                          <!-- Line Chart -->
+                                                          <canvas id="lineChart" style="max-height: 400px;"></canvas>
+                                                          <script>
+                                                              document.addEventListener("DOMContentLoaded", () => {
+                                                                  new Chart(document.querySelector('#lineChart'), {
+                                                                      type: 'line',
+                                                                      data: {
+                                                                          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                                                                          datasets: [{
+                                                                              label: 'Line Chart',
+                                                                              data: [65, 59, 80, 81, 56, 55, 40],
+                                                                              fill: false,
+                                                                              borderColor: 'rgb(75, 192, 192)',
+                                                                              tension: 0.1
+                                                                          }]
+                                                                      },
+                                                                      options: {
+                                                                          scales: {
+                                                                              y: {
+                                                                                  beginAtZero: true
+                                                                              }
+                                                                          }
+                                                                      }
+                                                                  });
+                                                              });
+                                                          </script>
+                                                          <!-- End Line Chart -->
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div><!-- End Left side columns -->
+                                    </section>
+
+      <!-- Right side columns -->
+      <!-- <div class="col-lg-4">
+      
+      </div> -->
+      <!--End Right side columns. This places is for some useful information-->
+
+      
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title"><a href="a_viewStudent.html">Students</a><span>&nbsp; </span></h5>
+                      <h6>1244</h6>
+                      <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>
+                    </div>
+                  </div>
+                  </div>
+                  
+                     
+                <div class="col-lg-6">
+                  <div class="card">
+                      <div class="card-body">
+                      <h5 class="card-title"><a href="a_viewTutor.html">Tutor</a><span>&nbsp;</span></h5>
+                      <!--<h6>1244</h6>-->
+                      <span class="text-danger small pt-1 fw-bold">100%</span> <span class="text-muted small pt-2 ps-1"></span>
+                    </div>
+                  </div>
+                </div>
+                </div></div>
+              
+
+
+
+
               <div class="row">
                 <div class="col-lg-4">
                   <div class="card">
                     <div class="card-body">
-                      <h5 class="card-title">Java<span>&nbsp; semester 1 | 2023</span></h5>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-4">
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">Music<span>&nbsp; semester 1 | 2023</span></h5>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-4">
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">Gaming<span>&nbsp; semester 1 | 2023</span></h5>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-lg-4">
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">Safety Children Module<span>&nbsp; semester 1 | 2023</span></h5>
+                      <h5 class="card-title"><a href="pages-faq.html">Feedback</a><span>&nbsp; </span></h5>
                     </div>
                   </div>
                 </div>
