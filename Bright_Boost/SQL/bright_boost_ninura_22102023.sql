@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 22, 2023 at 08:14 AM
+-- Generation Time: Oct 22, 2023 at 08:31 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -31,7 +31,7 @@ CREATE TABLE `session_student` (
   `student_id` int(11) DEFAULT NULL,
   `session_id` int(11) DEFAULT NULL,
   `session_name` varchar(255) DEFAULT NULL,
-  `status` enum('attending','attended') DEFAULT NULL
+  `status` enum('attending','attended') DEFAULT 'attending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 COMMIT;
 
