@@ -1,3 +1,5 @@
+<!-- SQL Connectivitiy -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -236,80 +238,53 @@
 
     <!-- Punch In / Out + Subscription Section -->
     <section class="section">
-      <div class="row">
         <div class="col-lg-11">
           <div class="card">
-            <div class="card-body">
-              <br>
-              <div class="row">
-                <div class="col-lg-4">
-                  <div class="card">
-                    <div class="card-body">
-                      <div class="card-body button-card-body">
-                        <button class="card-button">Punch In</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-4">
-                  <div class="card">
-                    <div class="card-body">
-                      <div class="card-body button-card-body">
-                        <button class="card-button">Punch Out</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-4">
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">Subscription Period:<span>&nbsp; X Days Remaining</span></h5>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+          <?php
+                $servername = "localhost";
+                $username = "root";
+                $password = "";
+                $dbname = "bright_boost";
 
-        <div class="col-lg-11">
-          <div class="card">
-            <div class="card-body">
-              <h3 class="card-title">Sessions</h3>
-              <hr>
-              <div class="row">
-                <div class="col-lg-4">
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">Java<span>&nbsp; semester 1 | 2023</span></h5>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-4">
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">Music<span>&nbsp; semester 1 | 2023</span></h5>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-4">
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">Gaming<span>&nbsp; semester 1 | 2023</span></h5>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-lg-4">
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">Safety Children Module<span>&nbsp; semester 1 | 2023</span></h5>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+
+                // Create connection
+                $conn = new mysqli($servername, $username, $password, $dbname);
+
+                // Check connection
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                }
+
+                // $currentDateTime = date("Y-m-d H:i:s");
+                // $currentDay = date("l");
+
+                //For testing only. Enable code above for final ver.
+                $currentDateTime = '14:03:04';
+                $currentDay = 'Monday';
+
+                $sql = "SELECT * FROM session_details WHERE Session_Day = '$currentDay' AND Session_Start <= '$currentDateTime' AND Session_End >= '$currentDateTime'";
+                $result = $conn->query($sql);
+
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        $sessionName = $row["Session_Name"];
+                        echo "<div class=\"card-body\">";
+                        echo "<h5 class=\"card-title\">";
+                        echo $sessionName . "<br>";
+                        echo "</h5>";
+                        echo "</div>";
+                    }
+                } else {
+                    echo "<div class=\"card-body\">";
+                    echo "<h5 class=\"card-title\">";
+                    echo "No active sessions.";
+                    echo "</h5>";
+                    echo "</div>";
+                }
+
+                $conn->close();
+                ?>
+
           </div>
         </div>
 
