@@ -260,17 +260,20 @@
 
                 //For testing only. Enable code above for final ver.
                 $currentDateTime = '14:03:04';
-                $currentDay = 'Monday';
+                $currentDay = 'Tuesday';
+
+                $studentID = 11;
 
                 $sql = "SELECT * FROM session_details WHERE Session_Day = '$currentDay' AND Session_Start <= '$currentDateTime' AND Session_End >= '$currentDateTime'";
                 $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
+                        $sessionID = $row["Session_Id"];
                         $sessionName = $row["Session_Name"];
                         echo "<div class=\"card-body\">";
                         echo "<h5 class=\"card-title\">";
-                        echo $sessionName . "<br>";
+                        echo "<a href=\"add_session_student.php?sessionID=$sessionID&studentID=$studentID&sessionName=$sessionName\">$sessionName</a><br>";
                         echo "</h5>";
                         echo "</div>";
                     }
