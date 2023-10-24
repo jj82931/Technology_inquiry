@@ -1,4 +1,14 @@
-<!-- SQL Connectivitiy -->
+<?php
+    error_reporting(E_ALL);
+    //Chaeyeon's connection
+    $host = "localhost:3307";
+    $user = "root";
+    $pwd = "";
+    $sql_db = "bright_boost";
+
+    global $connnection;
+    $connnection = new mysqli($host, $user, $pwd, $sql_db);
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -6,7 +16,7 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <!--display "Welcome <tutor name>. <Session>" need to be worked through DB-->
-    <title>Tutor | Student Dashboard</title> 
+    <title>Student | Class</title> 
     
     <meta content="" name="description">
     <meta content="" name="keywords">
@@ -180,6 +190,18 @@
 
     <ul class="sidebar-nav" id="sidebar-nav">
 
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#class-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span>Class</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="class-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="s_index.php">
+              <i class="bi bi-circle"></i><span>Manage Class</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Forms Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
@@ -187,7 +209,7 @@
         </a>
         <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="t_timetable.html">
+            <a href="t_timetable.php">
               <i class="bi bi-circle"></i><span>Time Table</span>
             </a>
           </li>
@@ -217,80 +239,159 @@
       </li><!-- End F.A.Q Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-feedback.html">
+        <a class="nav-link collapsed" href="pages-contact.html">
           <i class="bi bi-envelope"></i>
-          <span>Feedback</span>
+          <span>Contact</span>
         </a>
       </li><!-- End Contact Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="pages-register.html">
+          <i class="bi bi-card-list"></i>
+          <span>Register</span>
+        </a>
+      </li><!-- End Register Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="pages-login.html">
+          <i class="bi bi-box-arrow-in-right"></i>
+          <span>Login</span>
+        </a>
+      </li><!-- End Login Page Nav -->
+    </ul>
 
   </aside><!-- End Sidebar-->
 
   <main id="main" class="main">
 
     <div class="pagetitle">
+        <h1>Ask question</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="s_index.html">Home</a></li>
           <li class="breadcrumb-item">Dashboard</li>
+          <li class="breadcrumb-item">Java</li>
+          <li class="breadcrumb-item">tutors</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
 
-    <!-- Punch In / Out + Subscription Section -->
-    <section class="section">
-        <div class="col-lg-11">
-          <div class="card">
-          <?php
-                $servername = "localhost:3307";
-                $username = "root";
-                $password = "";
-                $dbname = "bright_boost";
+    <section class="section profile">
+      <div class="row">
+        <?php 
+          if ($connnection->connect_error) {
+            die("Connection failed: " . $connnection->connect_error);
+          }else{
 
-
-                // Create connection
-                $conn = new mysqli($servername, $username, $password, $dbname);
-
-                // Check connection
-                if ($conn->connect_error) {
-                    die("Connection failed: " . $conn->connect_error);
+            global $query;
+            $query = "SELECT tutor_details.Tutor_Name, tutor_details.Tutor_Email
+            FROM tutor_details
+            JOIN subject_tutor_details ON tutor_details.Tutor_Id = subject_tutor_details.Tutor_id
+            JOIN subject_details ON subject_tutor_details.Subject_id = subject_details.Subject_Id
+            WHERE subject_details.Subject = 'JAVA';"; 
+  
+            $result = $connnection->query($query);
+            if ($result->num_rows > 0) {
+              $searchResult = array();
+                while ($row = $result->fetch_assoc()) {
+                    $searchResult[] = $row;
                 }
-
-                // $currentDateTime = date("Y-m-d H:i:s");
-                // $currentDay = date("l");
-
-                //For testing only. Enable code above for final ver.
-                $currentDateTime = '14:03:04';
-                $currentDay = 'Tuesday';
-
-                $studentID = 11;
-
-                $sql = "SELECT * FROM session_details WHERE Session_Day = '$currentDay' AND Session_Start <= '$currentDateTime' AND Session_End >= '$currentDateTime'";
-                $result = $conn->query($sql);
-
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        $sessionID = $row["Session_Id"];
-                        $sessionName = $row["Session_Name"];
-                        echo "<div class=\"card-body\">";
-                        echo "<h5 class=\"card-title\">";
-                        echo "<a href=\"add_session_student.php?sessionID=$sessionID&studentID=$studentID&sessionName=$sessionName\">$sessionName</a><br>";
-                        echo "</h5>";
-                        echo "</div>";
-                    }
-                } else {
-                    echo "<div class=\"card-body\">";
-                    echo "<h5 class=\"card-title\">";
-                    echo "No active sessions.";
-                    echo "</h5>";
-                    echo "</div>";
+                foreach ($searchResult as $row) {
+                  echo "<div class='col-xl-4'>";
+                  echo "<div class='card'>";
+                  echo "<div class='card-body profile-card pt-4 d-flex flex-column align-items-center'>";
+                  echo "<h2>". $row['Tutor_Name'] ."</h2>";
+                  echo "<h3>". $row['Tutor_Email'] ."</h3>";
+                  echo "</div>";
+                  echo "</div>";
+                  echo "</div>";
                 }
+                
+            } else {
+                echo "<script>
+                        alert('No result in tutor list.');
+                    </script>";
+            }
+        }
+        ?>
+        
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Ask question</h5>
 
-                $conn->close();
-                ?>
+          <!-- No Labels Form -->
+          <form class="row g-3" method="post" action="s_postQuestion.php" name="formPostQuestion">
+            <div class="col-md-4">
+                <select id="inputState" class="form-select" name="classTutorSelect">
+                <optgroup label="Please Select the tutor.">
+                  <?php
+                   $result = $connnection->query($query);
+                   if ($result->num_rows > 0) {
+                     $searchResult = array();
+                       while ($row = $result->fetch_assoc()) {
+                           $searchResult[] = $row;
+                       }
+                       foreach ($searchResult as $row) {
+                         echo"<option selected>".$row['Tutor_Name']."</option>";
+                       }
+                   }else{
+                    echo "SQL error in totur loaded the name of tutor";
+                   }
+                  ?>
+                </optgroup>
+                </select>
+              </div>
+            <div class="form-group">
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="10" placeholder="content" name="classAskContent"></textarea>
+            </div>
+            
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="reset" class="btn btn-secondary">Reset</button>
+            </div>
+          </form><!-- End No Labels Form -->
 
-          </div>
         </div>
+      </div>
+    </section>
+    <section class="section profile">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Previous Questions</h5>
+          <table class="table table-borderless datatable">
+            <thead>
+              <tr>
+                <th scope="col">Question Number</th>
+                <th scope="col">Title</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row"><a href="t_view_question.php">#2457</a></th>
+                <td><a href="t_view_question.php" class="text-primary">I have a question regarding..</a></td>
+                <td><span class="badge bg-success">Answered</span></td>
+              </tr>
+              <tr>
+                <th scope="row"><a href="t_view_question.php">#2147</a></th>
+                <td><a href="t_view_question.php" class="text-primary">Do I have to really..</a></td>
+                <td><span class="badge bg-success">Answered</span></td>
+              </tr>
+              <tr>
+                <th scope="row"><a href="t_view_question.php">#2049</a></th>
+                <td><a href="t_view_question.php" class="text-primary">I would like to make sure..</a></td>
+                <td><span class="badge bg-success">Answered</span></td>
+              </tr>
+              <tr>
+                <th scope="row"><a href="t_view_question.php">#2644</a></th>
+                <td><a href="t_view_question.php" class="text-primar">I request to extend for..</a></td>
+                <td><span class="badge bg-danger">Unanswered</span></td>
+              </tr>
+             </tbody>
+          </table>
+          </form>
 
+        </div>
       </div>
     </section>
 
