@@ -33,7 +33,7 @@ if ($conn->connect_error) {
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <!--display "Welcome <tutor name>. <Session>" need to be worked through DB-->
-  <title>Student | Dashboard - Brighton Boost school</title>
+  <title>Student | Dashboard - Bright Boost school</title>
 
   <meta content="" name="description">
   <meta content="" name="keywords">
@@ -126,7 +126,7 @@ if ($conn->connect_error) {
         </a>
         <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="t_timetable.html">
+            <a href="s_timetable.php">
               <i class="bi bi-circle"></i><span>Time Table</span>
             </a>
           </li>
@@ -161,6 +161,13 @@ if ($conn->connect_error) {
           <span>Feedback</span>
         </a>
       </li><!-- End Contact Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="logout.php">
+          <i class="bi bi-box-arrow-in-right"></i>
+          <span>LogOut</span>
+        </a>
+      </li><!-- End Logout Page Nav -->
 
   </aside><!-- End Sidebar-->
 
