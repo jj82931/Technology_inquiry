@@ -241,7 +241,7 @@
         <div class="col-lg-11">
           <div class="card">
           <?php
-                $servername = "localhost:3307";
+                $servername = "localhost";
                 $username = "root";
                 $password = "";
                 $dbname = "bright_boost";
@@ -260,7 +260,7 @@
 
                 //For testing only. Enable code above for final ver.
                 $currentDateTime = '14:03:04';
-                $currentDay = 'Tuesday';
+                $currentDay = 'Wednesday';
 
                 $studentID = 11;
 

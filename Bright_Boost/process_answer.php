@@ -1,9 +1,9 @@
 <?php
 global $connnection;
-$host = "127.0.0.1"; 
+$host = "localhost"; 
 $username = "root"; 
-$password = " "; 
-$database = "answers"; 
+$password = ""; 
+$database = "bright_boost"; 
 
 // Create a connection to the database
 $connnection = new mysqli($host, $username, $password, $database);

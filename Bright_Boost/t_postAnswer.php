@@ -378,7 +378,7 @@
   </main>
 
   <?php
-require_once("db_connection.php");
+require_once("process_answer.php");
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
