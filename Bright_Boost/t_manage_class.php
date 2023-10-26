@@ -1,4 +1,3 @@
-<!-- SQL Connectivitiy -->
 <?php
 session_start();
 
@@ -10,39 +9,22 @@ if (isset($_SESSION['tutor_id'])) {
   header("Location: login.php"); // Redirect to the login page if not logged in
   exit();
 }
-
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "bright_boost";
 
-// Create a connection to the database
+
+// Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check if the connection was successful
+// Check connection
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
+} else {
+  echo "Sucess";
 }
-
-// Retrieve the data from the SQL table
-$sql = "SELECT session_name, session_day, session_start, session_end FROM session_details";
-$result = $conn->query($sql);
-
-// Create an array to store the table data
-$tableData = array();
-
-// Loop through the result and store the data in the array
-if ($result->num_rows > 0) {
-  while ($row = $result->fetch_assoc()) {
-    $tableData[$row['session_start']][$row['session_day']] = $row['session_name'];
-  }
-}
-
-// Close the database connection
-
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,7 +32,7 @@ if ($result->num_rows > 0) {
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <!--display "Welcome <tutor name>. <Session>" need to be worked through DB-->
-  <title>Timetable</title>
+  <title>Tutor | Start Session</title>
 
   <meta content="" name="description">
   <meta content="" name="keywords">
@@ -74,7 +56,6 @@ if ($result->num_rows > 0) {
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/timetable.css">
 
 </head>
 
@@ -83,13 +64,12 @@ if ($result->num_rows > 0) {
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="t_index.php" class="logo d-flex align-items-center">
         <img src="assets/img/logo.png" alt="">
-        <span class="d-none d-lg-block">Bright Boost</span>
+        <span class="d-none d-lg-block">Brighton Boost School</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
-
 
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
@@ -100,16 +80,17 @@ if ($result->num_rows > 0) {
           </a>
         </li><!-- End Search Icon-->
 
+
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <?php
 
-            $sql1 = "Select Tutor_Name from tutor_details where Tutor_Id='$tutor_ID'";
-            $result1 = mysqli_query($conn, $sql1);
+            $sql = "Select Tutor_Name from tutor_details where Tutor_Id='$tutor_ID'";
+            $result = mysqli_query($conn, $sql);
 
-            if ($result1 && $result1->num_rows == 1) {
-              $row = $result1->fetch_assoc();
+            if ($result && $result->num_rows == 1) {
+              $row = $result->fetch_assoc();
               $tutor_Name = $row['Tutor_Name'];
               echo "<span class=\"d-none d-md-block dropdown-toggle ps-2\">$tutor_Name</span>";
             } else {
@@ -121,7 +102,6 @@ if ($result->num_rows > 0) {
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-
             <li>
               <hr class="dropdown-divider">
             </li>
@@ -147,7 +127,7 @@ if ($result->num_rows > 0) {
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="index.html">
+        <a class="nav-link collapsed" href="t_index.php">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
@@ -155,7 +135,7 @@ if ($result->num_rows > 0) {
 
 
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#class-nav" data-bs-toggle="collapse" href="#">
+        <a class="nav-link" data-bs-target="#class-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-journal-text"></i><span>Class</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="class-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
@@ -209,18 +189,11 @@ if ($result->num_rows > 0) {
       </li><!-- End F.A.Q Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-contact.html">
-          <i class="bi bi-envelope"></i>
-          <span>Contact</span>
+        <a class="nav-link collapsed" href="t_feedback.php">
+          <i class="bi bi-grid"></i>
+          <span>Feedback</span>
         </a>
-      </li><!-- End Contact Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-register.html">
-          <i class="bi bi-card-list"></i>
-          <span>Register</span>
-        </a>
-      </li><!-- End Register Page Nav -->
+      </li>
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="logout.php">
@@ -228,59 +201,66 @@ if ($result->num_rows > 0) {
           <span>LogOut</span>
         </a>
       </li><!-- End Login Page Nav -->
-    </ul>
 
   </aside><!-- End Sidebar-->
 
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Time Table</h1>
+      <h1>Manmage Class</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">Table and Calender</li>
-          <li class="breadcrumb-item active">Time Table</li>
+          <li class="breadcrumb-item">Class</li>
+          <li class="breadcrumb-item active">Manage Class</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
 
     <section class="section">
-      <div class="container">
-        <div class="timetable-img text-center">
-          <img src="img/content/timetable.png" alt="">
+      <div class="row">
+
+        <div class="col-lg-11">
+          <div class="card">
+            <div class="card-body">
+              <h3 class="card-title">A list of classes<span>&nbsp;semester 1 | 2023</span></h3>
+              <hr>
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title"><a href="t_classinfo.php" class="className">Java</a><span>&nbsp; semester 1 | 2023</span></h5>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title"><a href="t_classinfo.php" class="className">PHP</a><span>&nbsp; semester 1 | 2023</span></h5>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title"><a href="t_classinfo.php" class="className">HTML</a><span>&nbsp; semester 1 | 2023</span></h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title"><a href="t_classinfo.php" class="className">Dance</a><span>&nbsp; semester 1 | 2023</span></h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="table-responsive">
-          <table class="table table-bordered text-center">
-            <thead>
-              <tr class="bg-light-gray">
-                <th class="text-uppercase">Time</th>
-                <th class="text-uppercase">Monday</th>
-                <th class="text-uppercase">Tuesday</th>
-                <th class="text-uppercase">Wednesday</th>
-                <th class="text-uppercase">Thursday</th>
-                <th class="text-uppercase">Friday</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php
-              // Loop through the table data and generate the table rows and cells
-              $times = array_keys($tableData);
-              sort($times);
-              foreach ($times as $time) {
-                echo "<tr>";
-                echo "<td class='align-middle'>" . $time . "</td>";
-                echo "<td>" . ($tableData[$time]['Monday'] ?? '') . "</td>";
-                echo "<td>" . ($tableData[$time]['Tuesday'] ?? '') . "</td>";
-                echo "<td>" . ($tableData[$time]['Wednesday'] ?? '') . "</td>";
-                echo "<td>" . ($tableData[$time]['Thursday'] ?? '') . "</td>";
-                echo "<td>" . ($tableData[$time]['Friday'] ?? '') . "</td>";
-                echo "</tr>";
-              }
-              ?>
-            </tbody>
-          </table>
-        </div>
+
       </div>
     </section>
 
@@ -289,7 +269,7 @@ if ($result->num_rows > 0) {
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">
-      &copy; Copyright <strong><span>Bright Boost</span></strong>. All Rights Reserved
+      &copy; Copyright <strong><span>Brighton Boost School</span></strong>. All Rights Reserved
     </div>
   </footer><!-- End Footer -->
 
@@ -307,10 +287,8 @@ if ($result->num_rows > 0) {
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/tutor.js"></script>
 
 </body>
-<?php
-$conn->close();
-?>
 
 </html>

@@ -1,3 +1,31 @@
+<?php
+session_start();
+
+if (isset($_SESSION['tutor_id'])) {
+  $tutor_ID = $_SESSION['tutor_id'];
+  echo $tutor_ID;
+} else {
+  // When the user is not logged in
+  header("Location: login.php"); // Redirect to the login page if not logged in
+  exit();
+}
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "bright_boost";
+
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+} else {
+  echo "Sucess";
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,123 +81,46 @@
           </a>
         </li><!-- End Search Icon-->
 
-        <li class="nav-item dropdown">
-
-          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-            <i class="bi bi-bell"></i>
-            <span class="badge bg-primary badge-number">3</span>
-          </a><!-- End Notification Icon -->
-
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-            <li class="dropdown-header">
-              You have 3 new notifications
-              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
 
 
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-x-circle text-danger"></i>
-              <div>
-                <h4>New Question listed</h4>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-check-circle text-success"></i>
-              <div>
-                <h4>New Message</h4>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-info-circle text-primary"></i>
-              <div>
-                <h4>New Announcement</h4>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li class="dropdown-footer">
-              <a href="#">Show all notifications</a>
-            </li>
-
-          </ul><!-- End Notification Dropdown Items -->
-
-        </li><!-- End Notification Nav -->
 
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+            <?php
+
+            $sql = "Select Tutor_Name from tutor_details where Tutor_Id='$tutor_ID'";
+            $result = mysqli_query($conn, $sql);
+
+            if ($result && $result->num_rows == 1) {
+              $row = $result->fetch_assoc();
+              $tutor_Name = $row['Tutor_Name'];
+              echo "<span class=\"d-none d-md-block dropdown-toggle ps-2\">$tutor_Name</span>";
+            } else {
+              echo "Invalid";
+            }
+
+
+            ?>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-            <li class="dropdown-header">
-              <h6>Kevin Anderson</h6>
-              <span>Tutor</span>
-            </li>
             <li>
               <hr class="dropdown-divider">
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                <i class="bi bi-person"></i>
-                <span>My Profile</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                <i class="bi bi-gear"></i>
-                <span>Account Settings</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
-                <i class="bi bi-question-circle"></i>
-                <span>Need Help?</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
+              <a class="dropdown-item d-flex align-items-center" href="logout.php">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sign Out</span>
               </a>
             </li>
-          </ul>
-        </li>
+
+          </ul><!-- End Profile Dropdown Items -->
+        </li><!-- End Profile Nav -->
+
       </ul>
-    </nav>
+    </nav><!-- End Icons Navigation -->
   </header>
 
   <!-- ======= Sidebar ======= -->
@@ -191,7 +142,7 @@
         </a>
         <ul id="class-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="t_manage_class.html">
+            <a href="t_manage_class.php">
               <i class="bi bi-circle"></i><span>Manage Class</span>
             </a>
           </li>
@@ -210,7 +161,7 @@
         </a>
         <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="t_timetable.html">
+            <a href="t_timetable.php">
               <i class="bi bi-circle"></i><span>Time Table</span>
             </a>
           </li>
@@ -241,15 +192,15 @@
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="t_feedback.php">
-        <i class="bi bi-grid"></i>
+          <i class="bi bi-grid"></i>
           <span>Feedback</span>
         </a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-login.html">
+        <a class="nav-link collapsed" href="logout.php">
           <i class="bi bi-box-arrow-in-right"></i>
-          <span>Login</span>
+          <span>LogOut</span>
         </a>
       </li><!-- End Login Page Nav -->
 
@@ -259,16 +210,14 @@
 
   <main id="main" class="main">
     <script>
-
       document.addEventListener("DOMContentLoaded", function() {
-          var questionTitle = document.getElementById("activeName");
-          questionTitle.textContent = "Subject: " + sessionStorage.getItem("className");
+        var questionTitle = document.getElementById("activeName");
+        questionTitle.textContent = "Subject: " + sessionStorage.getItem("className");
       });
-      
     </script>
 
     <div class="pagetitle">
-    <h1>Manage Class</h1>
+      <h1>Manage Class</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -293,7 +242,7 @@
             </div>
             <hr>
           </div>
-          
+
           <div class="row">
             <div class="col-12">
               <div class="card">
@@ -322,7 +271,7 @@
                       <div class="row mb-3">
                         <label for="inputEmail3" class="col-sm-2 col-form-label">description</label>
                         <div class="col-sm-10">
-                        <textarea class="form-control" rows="10" readonly="readonly"></textarea>
+                          <textarea class="form-control" rows="10" readonly="readonly"></textarea>
                         </div>
                       </div>
                     </fieldset>
@@ -335,22 +284,22 @@
             <div class="col-12">
               <div class="card">
                 <div class="card-body">
-                <h3 class="card-title">Comments</h3>
+                  <h3 class="card-title">Comments</h3>
                   <div class="row mb-3" id="comments-container">
 
-                  <fieldset class="row mb-3">
-                    <p>Kevin</p>
-                    <p>Dummy data</p>
-                  </fieldset>
-                  <fieldset class="row mb-3">
-                    <p>Julia</p>
-                    <p>Dummy data</p>
-                  </fieldset>
-                  <fieldset class="row mb-3">
-                    <p>Dustin</p>
-                    <p>Dummy data</p>
-                  </fieldset>
-                  
+                    <fieldset class="row mb-3">
+                      <p>Kevin</p>
+                      <p>Dummy data</p>
+                    </fieldset>
+                    <fieldset class="row mb-3">
+                      <p>Julia</p>
+                      <p>Dummy data</p>
+                    </fieldset>
+                    <fieldset class="row mb-3">
+                      <p>Dustin</p>
+                      <p>Dummy data</p>
+                    </fieldset>
+
                   </div>
                 </div>
               </div>
@@ -362,27 +311,27 @@
             <div class="col-12">
               <div class="card">
                 <div class="card-body">
-                <h3 class="card-title">Leave a Comment</h3>
-                
+                  <h3 class="card-title">Leave a Comment</h3>
+
                   <form action="post" method="" id>
-                  <div class="row mb-3">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">Name</label> 
-                    <div class="col-sm-3">
-                      <input type="text" class="form-control" readonly="readonly" value="Kevin Macdonald"> <!--This name data need to be worked-->
-                    </div>
-                  </div>
-                  <fieldset class="row mb-3">
                     <div class="row mb-3">
-                      <label for="inputEmail3" class="col-sm-2 col-form-label">Comment</label>
-                      <div class="col-sm-10">
-                      <textarea class="form-control" rows="3"></textarea>
+                      <label for="inputEmail3" class="col-sm-2 col-form-label">Name</label>
+                      <div class="col-sm-3">
+                        <input type="text" class="form-control" readonly="readonly" value="Kevin Macdonald"> <!--This name data need to be worked-->
                       </div>
                     </div>
-                  </fieldset>
-                  <div class="text-center">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                    <button type="reset" class="btn btn-secondary">Reset</button>
-                  </div>
+                    <fieldset class="row mb-3">
+                      <div class="row mb-3">
+                        <label for="inputEmail3" class="col-sm-2 col-form-label">Comment</label>
+                        <div class="col-sm-10">
+                          <textarea class="form-control" rows="3"></textarea>
+                        </div>
+                      </div>
+                    </fieldset>
+                    <div class="text-center">
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                      <button type="reset" class="btn btn-secondary">Reset</button>
+                    </div>
                   </form>
                 </div>
               </div>
