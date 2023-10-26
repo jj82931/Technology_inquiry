@@ -105,12 +105,12 @@ if ($result->num_rows > 0) {
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                         <?php
 
-                        $sql1 = "Select Student_Name from tutor_details where Tutor_Id='$student_ID'";
+                        $sql1 = "Select Student_Name from student where Student_Id='$student_ID'";
                         $result1 = mysqli_query($conn, $sql1);
 
                         if ($result1 && $result1->num_rows == 1) {
                             $row = $result1->fetch_assoc();
-                            $tutor_Name = $row['Student_Name'];
+                            $student_Name = $row['Student_Name'];
                             echo "<span class=\"d-none d-md-block dropdown-toggle ps-2\">$student_Name</span>";
                         } else {
                             echo "Invalid";
