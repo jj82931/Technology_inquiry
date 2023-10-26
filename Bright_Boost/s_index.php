@@ -189,6 +189,8 @@ if ($conn->connect_error) {
           $currentDay = 'Wednesday';
 
           $studentID = 11;
+          //session name store session to use for other page.
+          global $sessionID;
 
           $sql = "SELECT * FROM session_details WHERE Session_Day = '$currentDay' AND Session_Start <= '$currentDateTime' AND Session_End >= '$currentDateTime'";
           $result = $conn->query($sql);
@@ -202,6 +204,7 @@ if ($conn->connect_error) {
               echo "<a href=\"add_session_student.php?sessionID=$sessionID&studentID=$studentID&sessionName=$sessionName\">$sessionName</a><br>";
               echo "</h5>";
               echo "</div>";
+              $_SESSION['sessionName'] = $sessionName; //session name store in Session
             }
           } else {
             echo "<div class=\"card-body\">";
