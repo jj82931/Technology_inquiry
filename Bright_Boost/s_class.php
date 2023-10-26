@@ -8,6 +8,7 @@
 
     global $connnection;
     $connnection = new mysqli($host, $user, $pwd, $sql_db);
+    session_start();
 ?>
 
 <!DOCTYPE html>
@@ -270,7 +271,12 @@
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="s_index.html">Home</a></li>
           <li class="breadcrumb-item">Dashboard</li>
-          <li class="breadcrumb-item">Java</li>
+          <?php 
+            global $sessionName;
+            $sessionName = $_SESSION['sessionName'];
+            echo "<li class='breadcrumb-item'>$sessionName</li>";
+          ?>
+          
           <li class="breadcrumb-item">tutors</li>
         </ol>
       </nav>
@@ -282,13 +288,13 @@
           if ($connnection->connect_error) {
             die("Connection failed: " . $connnection->connect_error);
           }else{
-
+            
             global $query;
             $query = "SELECT tutor_details.Tutor_Name, tutor_details.Tutor_Email
             FROM tutor_details
             JOIN subject_tutor_details ON tutor_details.Tutor_Id = subject_tutor_details.Tutor_id
             JOIN subject_details ON subject_tutor_details.Subject_id = subject_details.Subject_Id
-            WHERE subject_details.Subject = 'JAVA';"; 
+            WHERE subject_details.Subject = '$sessionName';"; 
   
             $result = $connnection->query($query);
             if ($result->num_rows > 0) {
