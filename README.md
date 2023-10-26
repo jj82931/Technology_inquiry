@@ -22,3 +22,8 @@ Version 0.6 / 13.10.23 / Chaeyeon
 - modified the tutor section
 - added feedback page
 - Removed unnecessary files
+
+Version 0.7 / 24.10.23 / Chaeyeon,Ninura
+- Load tutor info from DB on student page / Chaeyeon
+- added posting question for student / Chaeyeon
+- added session and loaded their subject on tutor page / Ninura
