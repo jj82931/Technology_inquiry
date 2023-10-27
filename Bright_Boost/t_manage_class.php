@@ -225,8 +225,8 @@ if ($conn->connect_error) {
           $currentDay = date("l");
 
           // //For testing only. Enable code above for final ver.
-          // $currentDateTime = '14:52:04';
-          // $currentDay = 'Wednesday';
+          // $currentDateTime = '18:52:04';
+          // $currentDay = 'Friday';
 
           global $sessionID;
 
