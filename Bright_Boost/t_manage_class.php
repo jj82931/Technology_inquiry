@@ -220,13 +220,13 @@ if ($conn->connect_error) {
     <div class="col-lg-11">
         <div class="card">
           <?php
-          // date_default_timezone_set('Australia/Melbourne');
-          // $currentDateTime = date("H:i:s");
-          // $currentDay = date("l");
+          date_default_timezone_set('Australia/Melbourne');
+          $currentDateTime = date("H:i:s");
+          $currentDay = date("l");
 
-          //For testing only. Enable code above for final ver.
-          $currentDateTime = '14:52:04';
-          $currentDay = 'Wednesday';
+          // //For testing only. Enable code above for final ver.
+          // $currentDateTime = '14:52:04';
+          // $currentDay = 'Wednesday';
 
           global $sessionID;
 
