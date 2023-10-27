@@ -3,7 +3,7 @@
     
     global $connnection;
     //Chaeyeon's connection
-    $host = "localhost:3307";
+    $host = "localhost";
     $user = "root";
     $pwd = "";
     $sql_db = "bright_boost";
