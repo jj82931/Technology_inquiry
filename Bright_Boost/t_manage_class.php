@@ -66,7 +66,7 @@ if ($conn->connect_error) {
     <div class="d-flex align-items-center justify-content-between">
       <a href="t_index.php" class="logo d-flex align-items-center">
         <img src="assets/img/logo.png" alt="">
-        <span class="d-none d-lg-block">Brighton Boost School</span>
+        <span class="d-none d-lg-block">Bright Boost School</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
