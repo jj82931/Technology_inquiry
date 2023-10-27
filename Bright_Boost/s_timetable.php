@@ -182,18 +182,11 @@ if ($result->num_rows > 0) {
             </li><!-- End F.A.Q Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="pages-contact.html">
+                <a class="nav-link collapsed" href="pages-feedback.html">
                     <i class="bi bi-envelope"></i>
-                    <span>Contact</span>
+                    <span>Feedback</span>
                 </a>
             </li><!-- End Contact Page Nav -->
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="pages-register.html">
-                    <i class="bi bi-card-list"></i>
-                    <span>Register</span>
-                </a>
-            </li><!-- End Register Page Nav -->
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="logout.php">

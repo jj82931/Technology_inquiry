@@ -119,6 +119,18 @@ if ($conn->connect_error) {
 
     <ul class="sidebar-nav" id="sidebar-nav">
 
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#class-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span>Class</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="class-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="s_index.php">
+              <i class="bi bi-circle"></i><span>Manage Class</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Forms Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
@@ -195,7 +207,7 @@ if ($conn->connect_error) {
           $currentDateTime = '14:03:04';
           $currentDay = 'Wednesday';
 
-          $studentID = 11;
+          //$studentID = 11;
           //session name store session to use for other page.
           global $sessionID;
 
@@ -208,7 +220,7 @@ if ($conn->connect_error) {
               $sessionName = $row["Session_Name"];
               echo "<div class=\"card-body\">";
               echo "<h5 class=\"card-title\">";
-              echo "<a href=\"add_session_student.php?sessionID=$sessionID&studentID=$studentID&sessionName=$sessionName\">$sessionName</a><br>";
+              echo "<a href=\"add_session_student.php?sessionID=$sessionID&studentID=$student_ID&sessionName=$sessionName\">$sessionName</a><br>";
               echo "</h5>";
               echo "</div>";
               $_SESSION['sessionName'] = $sessionName; //session name store in Session
