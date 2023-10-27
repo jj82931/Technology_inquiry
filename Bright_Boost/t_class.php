@@ -15,11 +15,11 @@ $user = "root";
 $pwd = "";
 $sql_db = "bright_boost";
 
-global $connnection;
-$connnection = new mysqli($host, $user, $pwd, $sql_db);
+global $conn;
+$conn = new mysqli($host, $user, $pwd, $sql_db);
 
 $query = "SELECT * FROM questions";
-$result = mysqli_query($con, $query);
+$result = mysqli_query($conn, $query);
 
 ?>
 
