@@ -268,7 +268,7 @@ if ($conn->connect_error) {
                   }
 
                   $sql = "SELECT Question_Content FROM questions WHERE Question_id = $question_id";
-                  $result = mysqli_query($con, $sql);
+                  $result = mysqli_query($conn, $sql);
 
                   if ($row = mysqli_fetch_assoc($result)) {
                     $questionContent = $row["Question_Content"];
@@ -297,8 +297,10 @@ if ($conn->connect_error) {
 
                     // Insert the answer into the database (you should also validate and sanitize user inputs)
                     $insert_sql = "INSERT INTO answer_table (Question_ID, Answer_Content, Timestamp) VALUES ($question_id, '$answer_content', '$currentDate')";
-                    if (mysqli_query($con, $insert_sql)) {
-                      //echo "<br>Answer saved successfully.";
+                    if (mysqli_query($conn, $insert_sql)) {
+                      echo "<script>
+                      alert('Answer saved successfully.');
+                      </script>";
                     } else {
                       echo "Error: " . mysqli_error($conn);
                     }

@@ -88,7 +88,7 @@ if ($conn->connect_error) {
                         <?php
 
                         $sql1 = "Select Student_Name from student where Student_Id='$student_ID'";
-                        $result1 = mysqli_query($connnection, $sql1);
+                        $result1 = mysqli_query($conn, $sql1);
 
                         if ($result1 && $result1->num_rows == 1) {
                             $row = $result1->fetch_assoc();
@@ -268,7 +268,7 @@ if ($conn->connect_error) {
                                     }
 
                                     $sql = "SELECT Question_Content FROM questions WHERE Question_id = $question_id";
-                                    $result = mysqli_query($con, $sql);
+                                    $result = mysqli_query($conn, $sql);
 
                                     if ($row = mysqli_fetch_assoc($result)) {
                                         $questionContent = $row["Question_Content"];
@@ -281,23 +281,23 @@ if ($conn->connect_error) {
                                 </div>
                               </div>';
 
-                                        echo '<div class="row mb-5">
-                        <label for="inputEmail3" class="col-sm-5 col-form-label"> Question</label> 
-                        <div class="col-sm-3">
+                                        echo '<div class="row mb-3">
+                        <label for="inputEmail3" class="col-sm-2 col-form-label"> Question</label> 
+                        <div class="col-sm-10">
                           <input type="text" class="form-control" name="question_content" readonly="readonly" value="' . $questionContent . '"> <!--This name data need to be worked-->
                         </div>
                       </div>';
                                     }
 
                                     $sql4 = "Select * from answer_table where Question_ID = '$question_id'";
-                                    $result4 = mysqli_query($con, $sql4);
+                                    $result4 = mysqli_query($conn, $sql4);
 
                                     if ($row = mysqli_fetch_assoc($result4)) {
                                         $answerContent = $row["Answer_Content"];
 
-                                        echo '<div class="row mb-5">
-                        <label for="inputEmail3" class="col-sm-5 col-form-label"> Question</label> 
-                        <div class="col-sm-3">
+                        echo '<div class="row mb-3">
+                        <label for="inputEmail3" class="col-sm-2 col-form-label">Answer</label> 
+                        <div class="col-sm-10">
                           <input type="text" class="form-control" name="question_content" readonly="readonly" value="' . $answerContent . '"> <!--This name data need to be worked-->
                         </div>
                       </div>';
@@ -327,7 +327,7 @@ if ($conn->connect_error) {
                       </div>-->
 
 
-                                    <textarea name="answer_content" rows="5" cols="40"></textarea><br><br>
+                                    
 
                                     <input type="submit" value="submit" name="submit">
                                 </form>

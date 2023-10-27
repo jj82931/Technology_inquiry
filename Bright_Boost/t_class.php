@@ -245,7 +245,9 @@ $result = mysqli_query($conn, $query);
                     </tr>
                     <tr>
                       <?php
-                      while ($row = mysqli_fetch_assoc($result)) {
+                      $sql3 = "Select * from questions WHERE Tutor_Id='$tutor_ID'";
+                      $result3 = mysqli_query($conn, $sql3);
+                      while ($row = mysqli_fetch_assoc($result3)) {
                       ?>
 
                         <td><?php echo $row["Question_id"];  ?></td>
