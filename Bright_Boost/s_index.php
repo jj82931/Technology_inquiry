@@ -199,16 +199,14 @@ if ($conn->connect_error) {
       <div class="col-lg-11">
         <div class="card">
           <?php
-
-          // $currentDateTime = date("Y-m-d H:i:s");
+          // date_default_timezone_set('Australia/Melbourne');
+          // $currentDateTime = date("H:i:s");
           // $currentDay = date("l");
 
           //For testing only. Enable code above for final ver.
-          $currentDateTime = '14:03:04';
+          $currentDateTime = '14:52:04';
           $currentDay = 'Wednesday';
 
-          //$studentID = 11;
-          //session name store session to use for other page.
           global $sessionID;
 
           $sql = "SELECT * FROM session_details WHERE Session_Day = '$currentDay' AND Session_Start <= '$currentDateTime' AND Session_End >= '$currentDateTime'";

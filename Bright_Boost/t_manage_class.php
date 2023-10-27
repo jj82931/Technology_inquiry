@@ -217,52 +217,44 @@ if ($conn->connect_error) {
       </nav>
     </div><!-- End Page Title -->
 
-    <section class="section">
-      <div class="row">
+    <div class="col-lg-11">
+        <div class="card">
+          <?php
+          // date_default_timezone_set('Australia/Melbourne');
+          // $currentDateTime = date("H:i:s");
+          // $currentDay = date("l");
 
-        <div class="col-lg-11">
-          <div class="card">
-            <div class="card-body">
-              <h3 class="card-title">A list of classes<span>&nbsp;semester 1 | 2023</span></h3>
-              <hr>
-              <div class="row">
-                <div class="col-lg-4">
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title"><a href="t_classinfo.php" class="className">Java</a><span>&nbsp; semester 1 | 2023</span></h5>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-4">
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title"><a href="t_classinfo.php" class="className">PHP</a><span>&nbsp; semester 1 | 2023</span></h5>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-4">
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title"><a href="t_classinfo.php" class="className">HTML</a><span>&nbsp; semester 1 | 2023</span></h5>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-lg-4">
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title"><a href="t_classinfo.php" class="className">Dance</a><span>&nbsp; semester 1 | 2023</span></h5>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+          //For testing only. Enable code above for final ver.
+          $currentDateTime = '14:52:04';
+          $currentDay = 'Wednesday';
 
-      </div>
-    </section>
+          global $sessionID;
+
+          $sql = "SELECT * FROM session_details WHERE Session_Day = '$currentDay' AND Session_Start <= '$currentDateTime' AND Session_End >= '$currentDateTime'";
+          $result = $conn->query($sql);
+
+          if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+              $sessionID = $row["Session_Id"];
+              $sessionName = $row["Session_Name"];
+              echo "<div class=\"card-body\">";
+              echo "<h5 class=\"card-title\">";
+              echo "<a href=\"t_class.php\">$sessionName</a><br>";
+              echo "</h5>";
+              echo "</div>";
+              $_SESSION['sessionName'] = $sessionName; //session name store in Session
+            }
+          } else {
+            echo "<div class=\"card-body\">";
+            echo "<h5 class=\"card-title\">";
+            echo "No active sessions.";
+            echo "</h5>";
+            echo "</div>";
+          }
+
+          $conn->close();
+          ?>
+
 
   </main><!-- End #main -->
 
