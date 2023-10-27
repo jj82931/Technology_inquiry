@@ -280,37 +280,36 @@ $connnection = new mysqli($host, $user, $pwd, $sql_db);
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Previous Questions</h5>
-          <table class="table table-borderless datatable">
-            <thead>
-              <tr>
-                <th scope="col">Question Number</th>
-                <th scope="col">Title</th>
-                <th scope="col">Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row"><a href="t_view_question.php">#2457</a></th>
-                <td><a href="t_view_question.php" class="text-primary">I have a question regarding..</a></td>
-                <td><span class="badge bg-success">Answered</span></td>
-              </tr>
-              <tr>
-                <th scope="row"><a href="t_view_question.php">#2147</a></th>
-                <td><a href="t_view_question.php" class="text-primary">Do I have to really..</a></td>
-                <td><span class="badge bg-success">Answered</span></td>
-              </tr>
-              <tr>
-                <th scope="row"><a href="t_view_question.php">#2049</a></th>
-                <td><a href="t_view_question.php" class="text-primary">I would like to make sure..</a></td>
-                <td><span class="badge bg-success">Answered</span></td>
-              </tr>
-              <tr>
-                <th scope="row"><a href="t_view_question.php">#2644</a></th>
-                <td><a href="t_view_question.php" class="text-primar">I request to extend for..</a></td>
-                <td><span class="badge bg-danger">Unanswered</span></td>
-              </tr>
-            </tbody>
+          <table class="table table-bordered">
+            <tr>
+              <td> Question ID </td>
+              <td> Question </td>
+              <td> View Answer </td>
+            </tr>
+            <tr>
+              <?php
+
+              $sql3 = "Select * from questions WHERE Student_Id='$student_ID'";
+              $result3 = mysqli_query($connnection, $sql3);
+              while ($row = mysqli_fetch_assoc($result3)) {
+              ?>
+
+                <td><?php echo $row["Question_id"];  ?></td>
+                <td><?php echo $row["Question_Content"]; ?></td>
+
+                <!--<td><a href="t_fillAnswer.php" class="btn btn-primary">Answer</a></td>-->
+
+                <td><a href="s_answer.php?question_id=<?php echo $row["Question_id"]; ?>" class="btn btn-primary">View Answer</a></td>
+
+
+            </tr>
+          <?php
+              }
+          ?>
+
           </table>
+
+
           </form>
 
         </div>
