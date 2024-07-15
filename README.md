@@ -1,6 +1,7 @@
 # Technology_inquiry
 
 Project Summary
+
 Bright  Boost is  an  after-school program that  provides  tutoring  for  high  school  students. 
 Students from local high schools can enrol in the program for a small fee, which is paid yearly 
 or per term, and can then attend Bright Boost sessions any number of weekdays after school. 
