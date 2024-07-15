@@ -1,5 +1,27 @@
 # Technology_inquiry
 
+Project Summary
+Bright  Boost is  an  after-school program that  provides  tutoring  for  high  school  students. 
+Students from local high schools can enrol in the program for a small fee, which is paid yearly 
+or per term, and can then attend Bright Boost sessions any number of weekdays after school. 
+Sessions run from 3:30pm to 5:30pm and are staffed by one or more tutors depending on the 
+day. Each tutor has expertise in one or more subject areas. Sessions are run on a drop-in, first- 
+come-first-served basis, where students can ask questions or simply use the space to work in. 
+Currently, tutors write their name and areas of expertise on a white board at the front of the 
+room, and students raise their hand if they have a question.
+
+If possible, they would also be interested in knowing details about the content of the questions, 
+when they were asked, which tutor answered, and possibly even how much of the tutor’s time 
+was required to address it. They are also open to collecting any other data you feel would be 
+useful for their business.
+They are not sure how this data should be entered – staff could record that they have answered 
+a question after doing so, or the system could double as a queue where students enter that 
+they would like help instead of just raising their hand.
+Bright Boost would also like the system to be able to calculate and display statistics and 
+summaries of the data it collects, but they leave the decision of what summaries and statistics 
+would be useful to you. They would also be interested in using the system to display a timetable 
+of when tutors are scheduled, so students can plan their week accordingly.
+
 Version 0.2 / 04.09.23 / Chaeyeon
 - Changed initial design.
 - Changed layout and added components to the tutor section.
